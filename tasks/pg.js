@@ -26,7 +26,6 @@ function execute_db(connection, statement, done) {
             }
             // console.log('Result:', result);
 
-            pg.end();
             done();
         });
     });
