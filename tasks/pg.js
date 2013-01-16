@@ -55,7 +55,7 @@ module.exports = function(grunt) {
       var data = self.data;
       var done = self.async();
 
-      var stmt = 'DROP user ' + data.user;
+      var stmt = 'DROP ROLE IF EXISTS ' + data.user;
 
       execute_db(data.connection, stmt, function(err, res) {
           grunt.log.writeln("Database user '" + data.user + "' dropped.");
