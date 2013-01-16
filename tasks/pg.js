@@ -7,8 +7,6 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 var pg = require('pg');
 
 function execute_db(connection, statement, done) {
