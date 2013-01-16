@@ -18,10 +18,11 @@ function execute_db(connection, statement, done) {
             throw new Error(err);
         }
 
+        // console.log(statement);
         client.query(statement, function(err, result) {
             if (err) {
                 pg.end();
-                throw new Error(err);
+                throw err;
             }
             // console.log('Result:', result);
 
@@ -29,31 +30,76 @@ function execute_db(connection, statement, done) {
             done();
         });
     });
-
 }
-
-
 
 module.exports = function(grunt) {
 
   // Please see the grunt documentation for more information regarding task
   // creation: https://github.com/gruntjs/grunt/blob/devel/docs/toc.md
 
-  grunt.registerMultiTask('pgcreate', 'Grunt plugin to help with administering Postgres.', function() {
+  grunt.registerMultiTask('pgcreateuser', 'Add a new Postgres user.', function() {
+      var self = this;
+      var data = self.data;
+      var done = self.async();
 
-    var data = this.data;
+      var stmt = 'CREATE user ' + data.user;
 
-    grunt.log.writeln('Database "' + data.name + '" created.');
+      execute_db(data.connection, stmt, function(err, res) {
+          grunt.log.writeln("Database user '" + data.user + "' created.");
+          done();
+      });
   });
 
-  grunt.registerMultiTask('pgdrop', 'Grunt plugin to help with administering Postgres.', function() {
+  grunt.registerMultiTask('pgdropuser', 'Drop a Postgres user.', function() {
       var self = this;
+      var data = self.data;
+      var done = self.async();
 
+      var stmt = 'DROP user ' + data.user;
+
+      execute_db(data.connection, stmt, function(err, res) {
+          grunt.log.writeln("Database user '" + data.user + "' dropped.");
+          done();
+      });
+  });
+
+  grunt.registerMultiTask('pgcreatedb', 'Create a new Postgres database.', function() {
+      var self = this;
+      var data = self.data;
+      var done = self.async();
+
+      // do DB name and owner here:
+      // * http://www.postgresql.org/docs/8.1/static/sql-createdatabase.html
+      var stmt = 'CREATE DATABASE ' + data.name;
+      if ( data.owner ) {
+          stmt += ' WITH OWNER ' + data.owner;
+      }
+
+      execute_db(data.connection, stmt, function(err, res) {
+          grunt.log.writeln('Database "' + data.name + '" created.');
+          done();
+      });
+  });
+
+  grunt.registerMultiTask('pgowner', 'Change the owner of a Postgres database.', function() {
+      var self = this;
+      var data = self.data;
+      var done = self.async();
+
+      var stmt = "ALTER DATABASE " + data.name + " OWNER TO " + data.owner;
+      execute_db(data.connection, stmt, function(err, res) {
+          grunt.log.writeln('Database "' + data.name + '" created.');
+          done();
+      });
+  });
+
+  grunt.registerMultiTask('pgdropdb', 'Drop a Postgres database..', function() {
+      var self = this;
       var done = this.async();
-
       var data = this.data;
-      execute_db(data.connection, "SELECT now();", function(err, res) {
-          grunt.log.writeln('Database "' + data.name + '" dropped. ->', res);
+
+      execute_db(data.connection, "DROP DATABASE IF EXISTS " + data.name + ";", function(err, res) {
+          grunt.log.writeln('Database "' + data.name + '" dropped.');
           done();
       });
   });
