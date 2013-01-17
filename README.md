@@ -72,9 +72,10 @@ Each task also requires the following:
 2013-01-16: 0.1.0 - 
 ```
 
-## Author ##
+## Authors ##
 
-Andrew Chilton.
+Andrew Chilton (chilts).
+Nicholas Faiz (nicholasf).
 
 ## Licence ##
 
