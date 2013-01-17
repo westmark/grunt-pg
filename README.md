@@ -49,8 +49,8 @@ grunt.initConfig({
 
 ## Tasks ##
 
-There are 5 tasks in grunt-pg: *pgcreateuser*, *pgdropuser*, *pgcreatedb*, *pgowner* and *pgdropdb*. Each task is a
-multitask.
+There are 5 tasks in grunt-pg: *pgcreateuser*, *pgdropuser*, *pgcreatedb*, *pgowner*, *pgdropdb* and *pgsqlfile*. Each
+task is a multitask.
 
 Each works similarly as the example above shows. The connection credentials must be a user who is privieleged enough to
 be able to perform these operations. For example, using the 'postgres' user to the 'template1' database should be
