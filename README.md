@@ -74,8 +74,8 @@ Each task also requires the following:
 
 ## Authors ##
 
-Andrew Chilton (chilts).
-Nicholas Faiz (nicholasf).
+* Andrew Chilton (chilts).
+* Nicholas Faiz (nicholasf).
 
 ## Licence ##
 
