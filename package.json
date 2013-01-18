@@ -5,8 +5,8 @@
   "homepage": "https://github.com/moneytribeaustralia/grunt-pg",
   "author": {
     "name": "Andrew Chilton",
-    "email": "chilts@appsattic.com",
-    "url": "http://appsattic.com/"
+    "email": "hello@moneytribe.com.au",
+    "url": "http://moneytribe.com.au/"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,6 @@
     "grunt": "~0.4.0rc5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin", "pg", "postgres", "postgresql"
   ]
 }
