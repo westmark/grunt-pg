@@ -1,7 +1,7 @@
 {
   "name": "grunt-pg",
   "description": "Grunt plugin to help with administering Postgres.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/moneytribeaustralia/grunt-pg",
   "author": {
     "name": "Andrew Chilton",
