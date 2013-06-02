@@ -34,7 +34,7 @@ module.exports = function(grunt) {
   // Please see the grunt documentation for more information regarding task
   // creation: https://github.com/gruntjs/grunt/blob/devel/docs/toc.md
 
-  var _ = grunt.utils._;
+  var _ = require('underscore');
 
   grunt.registerMultiTask('pgcreateuser', 'Add a new Postgres user.', function() {
       var self = this;
@@ -106,7 +106,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask( 'pgsqlfile', 'Run a sql against a Postgres database', function() {
       var exec = require('child_process').exec;
       var done = this.async();
-      var data = _.extend( [], grunt.config.get('shell')._options, this.data );
+      var data = [].concat(grunt.config.get('shell')._options).concat(this.data);
       var dataOut = data.stdout;
       var dataErr = data.stderr;
 
